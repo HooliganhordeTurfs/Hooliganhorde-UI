@@ -1,0 +1,16 @@
+overwrite: true
+schema: [
+  "https://graph.node.hooligan.money/subgraphs/name/hooliganhorde-dev",
+  "https://graph.node.hooligan.money/subgraphs/name/hooligan",
+  "https://hub.snapshot.org/graphql"
+]
+documents: "src/**/*.graphql"
+generates:
+  ./src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./src/graph/graphql.schema.json:
+    plugins:
+      - "introspection"

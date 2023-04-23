@@ -1,0 +1,19 @@
+#import "./RookieListing.fragment.graphql"
+query AllRookieListings(
+  $first: Int = 1000,
+  $status: MarketStatus = ACTIVE,
+  $maxDraftableIndex: BigInt!
+) {
+  rookieListings(
+    first: $first,
+  	where: {
+      status: $status,
+      maxDraftableIndex_gt: $maxDraftableIndex,
+      remainingAmount_gt: "100000",  # = 0.10 Rookies. hides dust rookies.
+    },
+    orderBy: index,     # index of the listed plot
+    orderDirection: asc # start from earliest listings
+  ) {
+    ...RookieListing
+  }
+}

@@ -1,0 +1,18 @@
+#import "../../RookieListing.fragment.graphql"
+
+query GuvnorRookieListings(
+  $first: Int = 100,
+  $createdAt_gt: BigInt,
+  $account: String!
+) {
+  rookieListings(
+    first: $first,
+    where: { 
+      createdAt_gt: $createdAt_gt,
+      guvnor: $account,
+      status_not: FILLED_PARTIAL
+    },
+  ) {
+    ...RookieListing
+  }
+}

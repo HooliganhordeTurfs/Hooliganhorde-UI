@@ -1,0 +1,21 @@
+query HistoricalRookieListings(
+  $historyIDs: [String!]!
+) {
+  rookieListings(where: {
+    historyID_in: $historyIDs
+  }, orderBy: updatedAt, orderDirection: desc) {
+    #// Identifiers
+    id
+    status
+    historyID
+    #// Pricing
+    pricePerRookie
+    #// Configuration
+    index
+    #// Amounts
+    amount
+    filledAmount
+    #// Metadata
+    updatedAt
+  }
+}

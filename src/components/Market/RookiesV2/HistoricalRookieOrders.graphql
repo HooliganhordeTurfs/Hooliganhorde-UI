@@ -1,0 +1,25 @@
+query HistoricalRookieOrders(
+  $historyIDs: [String!]!
+) {
+  rookieOrders(where: {
+    historyID_in: $historyIDs
+  }, orderBy: updatedAt, orderDirection: desc) {
+    #// Identifiers
+    id
+    historyID
+
+    #// Pricing
+    pricePerRookie
+
+    #// Constraints
+    maxPlaceInLine
+
+    #// Amounts
+    rookieAmount
+    rookieAmountFilled
+    
+    #// Metadata
+    status
+    updatedAt
+  }
+}

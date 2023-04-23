@@ -1,0 +1,6 @@
+#import "./RookieOrder.fragment.graphql"
+query RookieOrder($id: ID!) {
+  rookieOrder(id: $id) {
+    ...RookieOrder
+  }
+}

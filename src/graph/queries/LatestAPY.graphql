@@ -1,0 +1,11 @@
+query LatestAPY {
+  firmYields(first: 1, orderBy: season, orderDirection:desc) {
+    id
+    season
+    twoProspectHooliganAPY
+    twoProspectHordeAPY
+    fourProspectHooliganAPY
+    fourProspectHordeAPY
+    hooligansPerSeasonEMA
+  }
+}

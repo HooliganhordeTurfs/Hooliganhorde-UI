@@ -1,0 +1,75 @@
+query MarketEvents(
+  $events_first: Int = 1000,
+  $events_timestamp_lt: BigInt!
+) {
+  marketEvents: marketplaceEvents(
+    orderBy: createdAt,
+    orderDirection: desc,
+    first: $events_first,
+    where: { 
+      createdAt_lt: $events_timestamp_lt
+    }
+  ) {
+    hash
+    createdAt
+    # --------
+    # LISTINGS
+    # --------
+    ... on RookieListingCancelled {
+      id
+      index # of the Listing that was cancelled
+      account
+      historyID
+      # => amount
+      # => pricePerRookie
+    }
+    ... on RookieListingCreated {
+      id
+      index
+      amount
+      maxDraftableIndex
+      pricePerRookie
+      historyID
+    }
+    ... on RookieListingFilled {
+      id
+      from
+      to
+      amount
+      index # of Listing that sold
+      start
+      historyID
+      # => pricePerRookie
+    }
+    # ------
+    # ORDERS
+    # ------
+    ... on RookieOrderCancelled {
+      id
+      orderId
+      account
+      historyID
+      # => amount
+      # => maxPlaceInLine
+      # => pricePerRookie
+    }
+    ... on RookieOrderCreated {
+      id
+      amount
+      maxPlaceInLine
+      pricePerRookie
+      historyID
+    }
+    ... on RookieOrderFilled {
+      id
+      from
+      to
+      historyID
+      amount
+      index # index of plot was sold to the Order
+      start #
+      # => maxPlaceInLine
+      # => pricePerRookie
+    }
+  }
+}

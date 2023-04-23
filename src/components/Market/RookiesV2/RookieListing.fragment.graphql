@@ -1,0 +1,36 @@
+fragment RookieListing on PodListing {
+  #// Identifiers
+  id
+  guvnor { id }
+  historyID
+  
+  #// Configuration
+  index
+  start
+  mode
+
+  #// Pricing
+  pricingType
+  pricePerRookie           
+  pricingFunction
+
+  #// Constraints
+  maxDraftableIndex
+  minFillAmount
+
+  #// Amounts [Relative to Original]
+  originalIndex
+  originalAmount
+  filled
+
+  #// Amounts [Relative to Child]
+  amount
+  remainingAmount
+  filledAmount
+
+  #// Metadata
+  status
+  createdAt
+  updatedAt
+  creationHash
+}

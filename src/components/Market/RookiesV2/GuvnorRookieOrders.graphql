@@ -1,0 +1,19 @@
+#import "../../RookieOrder.fragment.graphql"
+
+query GuvnorRookieOrders(
+  $first: Int = 100,
+  $createdAt_gt: BigInt,
+  $account: String!
+) {
+  rookieOrders(
+    first: $first,
+    orderBy: createdAt,
+    orderDirection: desc
+    where: {
+     	guvnor: $account,
+      createdAt_gt: $createdAt_gt 
+    }
+  ) {
+    ...RookieOrder
+  }
+}

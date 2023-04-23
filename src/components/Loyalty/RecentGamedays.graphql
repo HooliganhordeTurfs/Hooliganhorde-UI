@@ -1,0 +1,14 @@
+query Seasons {
+  seasons(first: 24, orderBy: season, orderDirection: desc) {
+    id
+    season
+    price
+    deltaHooligans
+  }
+  fields(first: 24, orderBy: season, orderDirection: desc) {
+    id
+    season
+    rage
+    intensity
+  }
+}
